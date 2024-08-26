@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Digital Point System</title>
+    <link rel="stylesheet" href="huh.css">
+</head>
+<body>
+  
+  <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="#">About</a>
+    <a href="#">Services</a>
+    <a href="#">Clients</a>
+    <a href="#">Contact</a>
+    <a href="#" id="logout-btn">Logout</a>
+  </div>
+  
+  <div id="user" class="user">
+    <img id="user-avatar" src="" alt="Avatar"
+    style="width: 50px; border-radius: 100%; height: 50px;">
+    <span id="user-name"></span>
+  </div>
+
+  <h1>
+    <div class="container">
+      <div class="image-div1">
+      <img src="https://scontent.fmnl8-6.fna.fbcdn.net/v/t39.30808-6/275251164_3168881066728188_7614429896767711014_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeG9gxN7qY1gWjMn4olsaqxFtzPymf9usiC3M_KZ_26yIOA3y5XGY00_gCjSFe_KtVNYQHUoFEt-cpYe5MaiZvlO&_nc_ohc=Bm_TE6nmMJsQ7kNvgGXHwJa&_nc_ht=scontent.fmnl8-6.fna&oh=00_AYCJch5hmgbhe9ynpO2gRAhbxsKQbZU3wodYwuGRzQOtZg&oe=66D1C08B" alt="" style="width:150px;">
+      </div>
+      <div class="DPS">Digital Point System</div>
+    </div>
+  </h1>
+
+  <section id="student-dashboard">
+    <h2>Student Dashboard</h2>
+    <p>Points: <span id="points-display">0</span></p>
+    <button id="submit-proof-btn">Submit Proof</button>
+    <button id="view-transactions-btn">View Transactions</button>
+  </section>
+
+  <section id="task">
+    <h2>Specific Tasks</h2>
+    <form action="/action_page.php">
+      <input type="checkbox" id="task1" name="task" value="Bike">
+      <label for="task1"> HONESTO = 1,000 pts </label><br><br>
+
+      <input type="checkbox" id="task2" name="task" value="Car">
+      <label for="task2"> REPORT BULLYING = 500 pts</label><br><br>
+
+      <input type="checkbox" id="task3" name="task" value="Boat">
+      <label for="task3"> HELP CLEANING THE SCHOOL = 300 pts</label><br><br>
+
+      <input type="checkbox" id="task4" name="task" value="Boat">
+      <label for="task4"> HELP CLEANING THE BATHROOM = 100 pts</label><br><br>
+    </form>
+  </section>
+
+  <section id="proof-submission">
+    <h2>Submit Proof</h2>
+    <form id="proof-form">
+      <input type="file" id="proof-file" accept=".pdf, .jpg, .png">
+      <textarea id="proof-description" placeholder="Description of the activity"></textarea>
+      <h3>Send proof to:</h3>
+      <input type="checkbox" id="send-to-teacher" name="send-to" value="teacher">
+      <label for="send-to-teacher">Teacher</label><br>
+      <input type="checkbox" id="send-to-admin" name="send-to" value="admin">
+      <label for="send-to-admin">Admin</label><br>
+      <input type="checkbox" id="send-to-principal" name="send-to" value="principal">
+      <label for="send-to-principal">Principal</label><br>
+      <button id="submit-proof-form-btn" type="button">Submit</button>
+    </form>
+  </section>
+
+  <section id="redeem-points">
+    <h2>Redeem Points</h2>
+    <button id="qr-scanner-btn">QR Code Scanner</button>
+    <select id="reward-select">
+      <option value="">Select a reward</option>
+      <option value="food-voucher">Food Voucher (500 points)</option>
+      <option value="school-supplies">School Supplies (1000 points)</option>
+      <option value="extra-credit">Extra Credit (2000 points)</option>
+    </select>
+  </section>
+
+  <section id="transactions">
+    <h2>Transactions</h2>
+    <ul id="transaction-list">
+      <!-- transactions will be displayed here -->
+    </ul>
+  </section>
+  
+  <script>
+    // Load user data from local storage
+    const user = JSON.parse(localStorage.getItem('user'));
+
+    if (user) {
+        document.getElementById('user-avatar').src = user.avatar;
+        document.getElementById('user-name').textContent = user.name;
+    } else {
+        // Redirect to signup if no user is found
+        window.location.href = 'signup.html';
+    }
+
+    document.getElementById('logout-btn').addEventListener('click', function() {
+        localStorage.removeItem('user');
+        window.location.href = 'signup.html';
+    });
+  </script>
+
+  <script src="huh.js"></script>
+
+</body>
+</html>
